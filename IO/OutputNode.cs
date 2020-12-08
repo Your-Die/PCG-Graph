@@ -16,7 +16,7 @@ namespace Chinchillada.GeneratorGraph
         IOutputNode OutputNode { get; }
     }
 
-    public class OutputNode<T> : Node, IOutputNode
+    public abstract class OutputNode<T> : Node, IOutputNode
     {
         [SerializeField] private string outputName;
 

@@ -17,7 +17,7 @@ namespace Chinchillada.GeneratorGraph
         IInputNode InputNode { get; }
     }
 
-    public class InputNode<T> : Node, IInputNode
+    public abstract class InputNode<T> : Node, IInputNode
     {
         [SerializeField] private string inputName;
 

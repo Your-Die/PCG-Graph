@@ -12,7 +12,7 @@ namespace Chinchillada.GeneratorGraph
         [SerializeField, Output] private T result;
 
         [SerializeField] private bool regenerate = true;
-        
+
         public T Result => this.result;
         public event Action<T> Generated;
 
@@ -20,12 +20,12 @@ namespace Chinchillada.GeneratorGraph
         public T Generate()
         {
             this.UpdateInputs();
-            
+
             this.result = this.GenerateInternal();
-            
+
             this.RenderPreview(this.result);
             this.Generated?.Invoke(this.result);
-            
+
             return this.result;
         }
 
@@ -33,8 +33,8 @@ namespace Chinchillada.GeneratorGraph
         {
             Assert.IsTrue(port.fieldName == nameof(this.result));
 
-            return this.regenerate || this.result == null 
-                ? this.Generate() 
+            return this.regenerate || this.result == null
+                ? this.Generate()
                 : this.result;
         }
 
@@ -43,5 +43,10 @@ namespace Chinchillada.GeneratorGraph
         protected abstract void UpdateInputs();
 
         protected abstract void RenderPreview(T result);
+
+        protected TField UpdateInput<TField>(ref TField field, string fieldName)
+        {
+            return field = this.GetInputValue(fieldName, field);
+        }
     }
 }
