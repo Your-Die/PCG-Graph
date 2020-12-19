@@ -7,7 +7,7 @@ using XNode;
 
 namespace Chinchillada.GeneratorGraph
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Scrobs/Node Graphs/Generator Graph")]
     public class GeneratorGraph : NodeGraph
     {
         [SerializeField, InlineEditor] private List<IInputSetter> inputs = new List<IInputSetter>();
