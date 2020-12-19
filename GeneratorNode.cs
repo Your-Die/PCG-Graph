@@ -43,10 +43,5 @@ namespace Chinchillada.GeneratorGraph
         protected abstract void UpdateInputs();
 
         protected abstract void RenderPreview(T result);
-
-        protected TField UpdateInput<TField>(ref TField field, string fieldName)
-        {
-            return field = this.GetInputValue(fieldName, field);
-        }
     }
 }
