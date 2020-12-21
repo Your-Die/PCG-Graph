@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Chinchillada.GeneratorGraph
+namespace Generators
 {
     public class SequenceGeneratorNode<T> : GeneratorNode<List<T>>
     {

@@ -3,7 +3,7 @@ using Chinchillada.Generation;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Chinchillada.GeneratorGraph
+namespace Generators
 {
     [Serializable]
     public class GraphBasedGenerator<T> : GeneratorBase<T>

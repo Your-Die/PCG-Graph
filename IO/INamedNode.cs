@@ -1,4 +1,4 @@
-﻿namespace Chinchillada.GeneratorGraph
+﻿namespace Generators
 {
     public interface INamedNode
     {

@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 
-namespace Chinchillada.GeneratorGraph
+namespace Generators
 {
     public abstract class GeneratorNodeWithPreview<T> : GeneratorNode<T>
     {

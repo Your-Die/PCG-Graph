@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Chinchillada.GeneratorGraph
+namespace Generators
 {
     public abstract class GeneratorNodeWithTexture<T> : GeneratorNode<T>
     {
@@ -19,7 +19,9 @@ namespace Chinchillada.GeneratorGraph
         protected override void RenderPreview(T result)
         {
             this.previewTexture = this.RenderPreviewTexture(result);
+            
             this.previewTexture.filterMode = this.previewFilterMode;
+            this.previewTexture.Apply();
         }
 
         protected abstract Texture2D RenderPreviewTexture(T result);

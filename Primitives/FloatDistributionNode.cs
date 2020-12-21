@@ -1,7 +1,7 @@
 ﻿using Chinchillada.Distributions;
 using Sirenix.Serialization;
 
-namespace Chinchillada.GeneratorGraph
+namespace Generators
 {
     public class FloatDistributionNode : GeneratorNodeWithPreview<float>
     {

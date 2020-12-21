@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using XNode;
 
-namespace Chinchillada.GeneratorGraph
+namespace Generators
 {
     public interface IInputNode : INamedNode
     {        

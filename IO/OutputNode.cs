@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using XNode;
 
-namespace Chinchillada.GeneratorGraph
+namespace Generators
 {
     public interface IOutputNode : INamedNode
     {

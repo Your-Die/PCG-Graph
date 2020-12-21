@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using XNode;
 
-namespace Chinchillada.GeneratorGraph
+namespace Generators
 {
     [CreateAssetMenu(menuName = "Scrobs/Node Graphs/Generator Graph")]
     public class GeneratorGraph : NodeGraph
