@@ -13,6 +13,8 @@ namespace Generators
 
         [SerializeField] private bool regenerate = true;
 
+        protected string ResultFieldName => nameof(this.result);
+
         public T Result => this.result;
         public event Action<T> Generated;
 
@@ -31,7 +33,7 @@ namespace Generators
 
         public override object GetValue(NodePort port)
         {
-            Assert.IsTrue(port.fieldName == nameof(this.result));
+            Assert.IsTrue(port.fieldName == this.ResultFieldName);
 
             return this.regenerate || this.result == null
                 ? this.Generate()
@@ -40,7 +42,9 @@ namespace Generators
 
         protected abstract T GenerateInternal();
 
-        protected abstract void UpdateInputs();
+        protected virtual void UpdateInputs()
+        {
+        }
 
         protected abstract void RenderPreview(T result);
     }
