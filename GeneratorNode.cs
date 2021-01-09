@@ -7,6 +7,8 @@ using XNode;
 
 namespace Generators
 {
+    using Chinchillada;
+
     public abstract class GeneratorNode<T> : Node, IGenerator<T>
     {
         [SerializeField, Output] private T result;
