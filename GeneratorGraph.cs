@@ -10,7 +10,7 @@ namespace Generators
     using Chinchillada;
     using Chinchillada.Foundation;
 
-    [CreateAssetMenu(menuName = "Scrobs/Node Graphs/Generator Graph")]
+    [CreateAssetMenu(menuName = "Scrobs/Graphs/Generator Graph")]
     public class GeneratorGraph : NodeGraph, ISource<IRNG>
     {
         [SerializeField][InlineEditor] private List<IInputSetter> inputs = new List<IInputSetter>();

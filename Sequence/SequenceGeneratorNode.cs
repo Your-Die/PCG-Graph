@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Chinchillada.Generation;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -9,7 +8,7 @@ namespace Generators
 {
     using Chinchillada;
 
-    public class SequenceGeneratorNode<T> : GeneratorNode<List<T>>
+    public abstract class SequenceGeneratorNode<T> : GeneratorNode<List<T>>
     {
         [SerializeField] private int sequenceLength;
 

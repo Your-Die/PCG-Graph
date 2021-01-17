@@ -6,14 +6,9 @@ namespace Generators
     public class FloatDistributionNode : GeneratorNodeWithPreview<float>
     {
         [OdinSerialize] private IDistribution<float> distribution;
-        
-        protected override float GenerateInternal()
-        {
-            return this.distribution.Sample();
-        }
 
-        protected override void UpdateInputs()
-        {
-        }
+        protected override float GenerateInternal() => this.distribution.Sample(this.Random);
+
+        protected override void UpdateInputs() { }
     }
 }

@@ -9,6 +9,7 @@ namespace Generators
     using Chinchillada;
     using Chinchillada.Foundation;
     using Interfaces;
+    using Sirenix.Serialization;
 
     public abstract class GeneratorNode<T> : Node, IGenerator<T>
     {
@@ -20,7 +21,7 @@ namespace Generators
         [OnValueChanged(nameof(UpdateRandomOverride))]
         private bool overrideRandom;
 
-        [SerializeField]
+        [OdinSerialize]
         [ShowIf(nameof(overrideRandom))]
         private SourceWrapper<IRNG> rng;
 
@@ -64,6 +65,8 @@ namespace Generators
             base.Init();
             this.UpdateRandomOverride();
         }
+
+        protected virtual void OnValidate() => this.UpdateRandomOverride();
 
         [ContextMenu("Update Random Override")]
         private void UpdateRandomOverride()

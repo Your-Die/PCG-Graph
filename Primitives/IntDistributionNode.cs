@@ -10,7 +10,7 @@
         
         protected override int GenerateInternal()
         {
-            return this.distribution.Sample();
+            return this.distribution.Sample(this.Random);
         }
     }
 }
