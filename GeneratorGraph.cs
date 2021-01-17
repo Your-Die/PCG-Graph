@@ -7,14 +7,21 @@ using XNode;
 
 namespace Generators
 {
+    using Chinchillada;
+    using Chinchillada.Foundation;
+
     [CreateAssetMenu(menuName = "Scrobs/Node Graphs/Generator Graph")]
-    public class GeneratorGraph : NodeGraph
+    public class GeneratorGraph : NodeGraph, ISource<IRNG>
     {
-        [SerializeField, InlineEditor] private List<IInputSetter> inputs = new List<IInputSetter>();
-        [SerializeField, InlineEditor] private List<IOutputGetter> outputs = new List<IOutputGetter>();
+        [SerializeField][InlineEditor] private List<IInputSetter> inputs = new List<IInputSetter>();
+        [SerializeField][InlineEditor] private List<IOutputGetter> outputs = new List<IOutputGetter>();
+
+        [SerializeField] private IRNG random = new CRandom();
 
         private readonly Dictionary<string, IInputNode> inputDictionary = new Dictionary<string, IInputNode>();
         private readonly Dictionary<string, IOutputNode> outputDictionary = new Dictionary<string, IOutputNode>();
+
+        public IRNG Random => this.random;
         
         public bool SetInput<T>(string inputName, T value)
         {
@@ -57,17 +64,20 @@ namespace Generators
             return false;
         }
 
+
         private void OnEnable()
         {
+            this.random.Initialize();
+            
             this.UpdateNodes();
 
-            var inputNodes = this.inputs.Select(setter => setter.InputNode);
+            var inputNodes  = this.inputs.Select(setter => setter.InputNode);
             var outputNodes = this.outputs.Select(getter => getter.OutputNode);
 
             BuildDictionary(inputNodes, this.inputDictionary);
             BuildDictionary(outputNodes, this.outputDictionary);
-            
-            void BuildDictionary<T>(IEnumerable<T> namedNodes, IDictionary<string, T> dictionary) 
+
+            static void BuildDictionary<T>(IEnumerable<T> namedNodes, IDictionary<string, T> dictionary) 
                 where T : INamedNode
             {
                 dictionary.Clear();
@@ -80,7 +90,7 @@ namespace Generators
         [Button]
         private void UpdateNodes()
         {
-            var newInputs = new List<IInputNode>();
+            var newInputs  = new List<IInputNode>();
             var newOutputs = new List<IOutputNode>();
 
             foreach (var node in this.nodes)
@@ -134,5 +144,7 @@ namespace Generators
                 return node => wrappers.All(setter => setter.Node != (INamedNode) node);
             }
         }
+
+        IRNG ISource<IRNG>.GetValue() => this.random;
     }
 }
