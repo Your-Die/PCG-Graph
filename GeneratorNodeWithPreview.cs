@@ -8,7 +8,7 @@ namespace Generators
         [ShowInInspector, ReadOnly, UsedImplicitly]
         private string preview;
         
-        protected override void RenderPreview(T result)
+        protected override void UpdatePreview(T result)
         {
             this.preview = result.ToString();
         }

@@ -16,7 +16,7 @@ namespace Generators
 
         protected const string PreviewGroup = "Preview Settings";
         
-        protected override void RenderPreview(T result)
+        protected override void UpdatePreview(T result)
         {
             this.previewTexture = this.RenderPreviewTexture(result);
             

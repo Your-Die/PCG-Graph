@@ -8,10 +8,11 @@ namespace Generators
 {
     using Chinchillada;
     using Chinchillada.Foundation;
+    using Chinchillada.NodeGraph;
     using Interfaces;
     using Sirenix.Serialization;
 
-    public abstract class GeneratorNode<T> : Node, IGenerator<T>
+    public abstract class GeneratorNode<T> : OutputNode<T>, IGenerator<T>
     {
         [SerializeField] [Output] private T result;
 
@@ -27,9 +28,15 @@ namespace Generators
 
         [SerializeField] [HideInInspector] private ISource<IRNG> randomSource;
 
-        protected IRNG Random => this.randomSource.GetValue();
+        protected IRNG Random => this.randomSource.Get();
 
         public T Result => this.result;
+
+        protected bool Regenerate
+        {
+            get => this.regenerate;
+            set => this.regenerate = value;
+        }
 
         public event Action<T> Generated;
 
@@ -41,24 +48,21 @@ namespace Generators
                 ? this.Generate()
                 : this.result;
         }
-
+        
         public T Generate()
         {
             this.UpdateInputs();
-
             this.result = this.GenerateInternal();
 
-            this.RenderPreview(this.result);
             this.Generated?.Invoke(this.result);
-
             return this.result;
         }
+        protected override T UpdateOutput() => this.Generate();
+
 
         protected abstract T GenerateInternal();
 
         protected virtual void UpdateInputs() { }
-
-        protected abstract void RenderPreview(T result);
 
         protected override void Init()
         {
@@ -80,5 +84,7 @@ namespace Generators
             this.overrideRandom = true;
             this.randomSource   = this.rng;
         }
+
+        T ISource<T>.Get() => this.Generate();
     }
 }

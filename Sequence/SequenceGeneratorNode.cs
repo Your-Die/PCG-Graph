@@ -26,6 +26,6 @@ namespace Generators
             this.sequenceLength = this.GetInputValue(nameof(this.sequenceLength), this.sequenceLength);
         }
 
-        protected override void RenderPreview(List<T> result) => this.preview = result.ToList();
+        protected override void UpdatePreview(List<T> result) => this.preview = result.ToList();
     }
 }
