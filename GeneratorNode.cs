@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Assertions;
-using XNode;
+using xNode;
 
 namespace Generators
 {
@@ -14,8 +14,6 @@ namespace Generators
 
     public abstract class GeneratorNode<T> : OutputNode<T>, IGenerator<T>
     {
-        [SerializeField] [Output] private T result;
-
         [SerializeField] private bool regenerate = true;
 
         [SerializeField]
@@ -26,11 +24,11 @@ namespace Generators
         [ShowIf(nameof(overrideRandom))]
         private SourceWrapper<IRNG> rng;
 
-        [SerializeField] [HideInInspector] private ISource<IRNG> randomSource;
+        [OdinSerialize] [HideInInspector] private ISource<IRNG> randomSource;
 
         protected IRNG Random => this.randomSource.Get();
 
-        public T Result => this.result;
+        public T Result => this.Output;
 
         protected bool Regenerate
         {
@@ -40,25 +38,16 @@ namespace Generators
 
         public event Action<T> Generated;
 
-        public override object GetValue(NodePort port)
-        {
-            Assert.IsTrue(port.fieldName == nameof(this.result));
-
-            return this.regenerate || this.result == null
-                ? this.Generate()
-                : this.result;
-        }
-        
         public T Generate()
         {
             this.UpdateInputs();
-            this.result = this.GenerateInternal();
+            var result = this.GenerateInternal();
 
-            this.Generated?.Invoke(this.result);
-            return this.result;
+            this.Generated?.Invoke(result);
+            return result;
         }
+        
         protected override T UpdateOutput() => this.Generate();
-
 
         protected abstract T GenerateInternal();
 

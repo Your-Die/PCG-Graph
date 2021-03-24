@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Assertions;
-using XNode;
+using xNode;
 
 namespace Generators
 {
@@ -19,13 +19,9 @@ namespace Generators
 
     public abstract class InputNode<T> : Node, IInputNode
     {
-        [SerializeField] private string inputName;
-
         [SerializeField] private T field;
 
         [SerializeField, Output] private T value;
-
-        public string Name => this.inputName;
 
         public T Value
         {
@@ -67,7 +63,6 @@ namespace Generators
             [Button]
             public void Read()
             {
-                this.name = this.node.inputName;
                 this.value = this.node.Value;
             }
 
