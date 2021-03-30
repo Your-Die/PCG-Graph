@@ -1,8 +1,6 @@
 ﻿using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Assertions;
-using xNode;
 
 namespace Generators
 {
