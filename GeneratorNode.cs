@@ -20,7 +20,7 @@ namespace Generators
 
         [OdinSerialize]
         [ShowIf(nameof(overrideRandom))]
-        private SourceWrapper<IRNG> rng;
+        private Constant<IRNG> rng;
 
         [OdinSerialize] [HideInInspector] private ISource<IRNG> randomSource;
 
