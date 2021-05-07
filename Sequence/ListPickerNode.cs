@@ -1,7 +1,7 @@
 namespace Generators
 {
     using System.Collections.Generic;
-    using Chinchillada.Foundation;
+    using Chinchillada;
     using UnityEngine;
 
     public abstract class ListPickerNode<T> : GeneratorNode<T>

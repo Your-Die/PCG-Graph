@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Generators
 {
     using Chinchillada;
-    using Chinchillada.Foundation;
     using Chinchillada.NodeGraph;
     using Interfaces;
     using Sirenix.Serialization;
